@@ -1,0 +1,48 @@
+{
+    i : {
+        f : {
+            f : 
+        }
+    }
+}
+
+
+
+addDictionary("if",6);
+//State
+{
+    i: {
+        f: 6
+    }
+}
+addDictonary("iff",8)
+//State
+{
+    i: { //Check if i is already there and have a token value
+        f: { //Check if is already there and have a token value if there's one then add STOP_MIDDLE's character inside current state and set prev token to it
+            STOP_MIDDLE: 6,
+            f: 8
+        }
+    }
+}
+
+
+dictonary: {
+
+}
+
+1 : {}
+2: {i: 1}
+3: {i -> f : 1}
+
+State
+Transition
+Accept
+Return token
+
+class LexicalAnalyzer
+ - Attributes:
+  -- Dictionary
+ - Method:
+  -- addDictionary
+  -- getToken
