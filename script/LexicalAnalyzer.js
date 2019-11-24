@@ -170,7 +170,6 @@ class LexicalAnalyzer{
         var currentChars ="", prevChars = ""
         var currentState = this.dictionary
 
-        //IF first char is not in FA add it to _ROOT_ Transition
         if(!this.dictionary[stringLexical[0]]){
             this.dictionary['_ROOT_'][stringLexical[0]] = stringLexical[0]
         }
@@ -302,6 +301,7 @@ class LexicalAnalyzer{
             if(char == this.separator){ //read space and push token
                 if(lastToken){
                     tokens.push(lastToken)
+                    lastToken = null
                 }
             }
 

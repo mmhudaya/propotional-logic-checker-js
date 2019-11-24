@@ -80,21 +80,94 @@ var lexicalAnalyzerParameter = {
     }
 }
 
+var pushdownParameter = {
+    states: [
+        //Formula
+        {
+            terminal: "S",
+            grammar: [
+                {
+                    symbols: ["P", "M"], //P AND Q
+                    lookaheadSymbols: ["1", "9"]
+                },
+                {
+                    symbols: ["6", "P", "7", "P"], //IF P THEN Q
+                    lookaheadSymbols: ["6"]
+                },
+                {
+                    symbols: ["2", "P"], // (negation P)
+                    lookaheadSymbols: ["2"]
+                }
+            ],
+            isRoot: true
+        },
+        //Propotition
+        {
+            terminal: "P",
+            grammar: [
+                {
+                    symbols: ["9", "S", "10"], // (formula)
+                    lookaheadSymbols: ["9"]
+                },
+                {
+                    symbols: ["1"], // (P),
+                    lookaheadSymbols: ["1"]
+                }
+            ]
+        },
+        //Operand
+        {
+            terminal: "M",
+            grammar:[
+                {
+                    symbols: ["O", "P"],
+                    lookaheadSymbols: ["3","4","5","8"]
+                },
+                {
+                    symbols: [""], // epsilon
+                    lookaheadSymbols: [""]
+                }
+            ]
+        },
+        //Operator
+        {
+            terminal: "O",
+            grammar: [
+                {
+                    symbols: ["3"], //and
+                    lookaheadSymbols: ["3"]
+                },
+                {
+                    symbols: ["4"], //or
+                    lookaheadSymbols: ["4"]
+                },
+                {
+                    symbols: ["5"], //xor
+                    lookaheadSymbols: ["5"]
+                },
+                {
+                    symbols: ["8"], //iff
+                    lookaheadSymbols: ["8"]
+                }
+            ]
+        },
+    ],
+    terminationSymbol: "#",
+}
+
 var la = new LexicalAnalyzer(lexicalAnalyzerParameter);
+var pda = new PushdownAutomata(pushdownParameter)
 
 console.log("Dictionary / Finite Automata")
 console.log(la.dictionary)
 
 
 function checkToken(){
-    var strings =document.getElementById("stringstext").value
-    if(lexicalAnalyzerParameter.buildDictionaryWithAutomataState){
-        console.log("Tokens: "+ la.getAllAutomataToken(strings))
-        document.getElementById("ouputtoken").innerHTML = "Output: "+la.getAllAutomataToken(strings).toString()
-    }else{
-        console.log("Tokens: "+la.getAllToken(strings))
-        document.getElementById("ouputtoken").innerHTML = "Output: "+la.getAllToken(strings).toString()
-    }
+    var strings = document.getElementById("stringstext").value
+    console.log("Tokens: "+ la.getAllAutomataToken(strings))
+    document.getElementById("ouputtoken").innerHTML = "Output: "+la.getAllAutomataToken(strings).toString()
+    document.getElementById("outputvalid").innerHTML = "Validity: " + pda.getTokenValidity(la.getAllAutomataToken(strings)).toString()
+        
 }
 
 //then the th t
