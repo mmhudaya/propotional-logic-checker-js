@@ -52,7 +52,7 @@ class PushdownAutomata{
 
         this.stack.pop()
 
-        if(tokens.length > 1){ //Token not empty
+        if(tokens.length != 0){ //Token not empty
             return false
         }
 
