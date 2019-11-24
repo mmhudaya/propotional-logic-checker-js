@@ -95,7 +95,7 @@ var pushdownParameter = {
                     lookaheadSymbols: ["6"]
                 },
                 {
-                    symbols: ["2", "P"], // (negation P)
+                    symbols: ["2", "S"], // (negation P)
                     lookaheadSymbols: ["2"]
                 }
             ],
