@@ -120,7 +120,7 @@ var pushdownParameter = {
             terminal: "M",
             grammar:[
                 {
-                    symbols: ["O", "P"],
+                    symbols: ["O", "S"],
                     lookaheadSymbols: ["3","4","5","8"]
                 },
                 {
@@ -165,8 +165,9 @@ console.log(la.dictionary)
 function checkToken(){
     var strings = document.getElementById("stringstext").value
     console.log("Tokens: "+ la.getAllAutomataToken(strings))
-    document.getElementById("ouputtoken").innerHTML = "Output: "+la.getAllAutomataToken(strings).toString()
-    document.getElementById("outputvalid").innerHTML = "Validity: " + pda.getTokenValidity(la.getAllAutomataToken(strings)).toString()
+    var validity = pda.getTokenValidity(la.getAllAutomataToken(strings)) ? "VALID" : "NOT VALID"
+    document.getElementById("ouputtoken").innerHTML = "Output Token Lexical: "+la.getAllAutomataToken(strings).toString()
+    document.getElementById("outputvalid").innerHTML = "Validity Token: " + validity
         
 }
 
