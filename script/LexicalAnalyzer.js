@@ -273,7 +273,7 @@ class LexicalAnalyzer{
             currentState = this.dictionary[nextState]
 
             //Check epsilon moves
-            if(currentState.epsilonMoveTo){
+            if(currentState && currentState.epsilonMoveTo){
                 //Push token if current is final and there's last token
                 if(lastToken){
                     tokens.push(lastToken)
