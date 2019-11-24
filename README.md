@@ -1,2 +1,8 @@
 # propotional-logic-checker-js
-College's task to check whether given propotional logic string is valid
+Example of Protpotional Logic Checker for Automata University's task completion
+
+Feature: 
+ - Lexical Analyzer
+
+TODO:
+ - Propotional Logic Checker
